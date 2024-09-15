@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singapore Token2049 Events (17-20 September)</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #000435;
+            color: #ffffff;
+        }
+        .filters {
+            margin-bottom: 20px;
+        }
+        #eventList {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .event-card {
+            border: 1px solid #3a3a5a;
+            padding: 15px;
+            border-radius: 5px;
+background-color: #1a1a4a;
+        }
+        input, select {
+            background-color: #1a1a4a;
+            color: #ffffff;
+            border: 1px solid #3a3a5a;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        a {
+            color: #00aaff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Singapore Token2049 Events (17-20 September)</h1>
+    
+    <div class="filters">
+        <input type="text" id="searchInput" placeholder="Search events...">
+        <select id="dateFilter">
+            <option value="">All Dates</option>
+            <option value="2024-09-17">17 September</option>
+            <option value="2024-09-18">18 September</option>
+            <option value="2024-09-19">19 September</option>
+            <option value="2024-09-20">20 September</option>
+        </select>
+        <select id="topicFilter">
+            <option value="">All Topics</option>
+            <!-- Add topic options dynamically based on your event data -->
+        </select>
+    </div>
+
+    <div id="eventList">
+        <!-- Event cards will be dynamically inserted here -->
+    </div>
+
+    <script>
+        // Sample event data (replace with your actual data)
+        const events = [
+{
+    "name": "TOKEN2049 AI + DePIN Happy Hour w/ Halborn, Autonomys, Pantera Capital, Gaia, ODIG, IOSG Ventures, Compute Labs, Ceramic & Nillion",
+    "date": "2024-09-17",
+    "time": "07:00 PM - 10:00 PM",
+    "topic": "Depin,AI",
+    "location": "Southbridge",
+    "mapLink": "https://www.google.com/maps/place/Southbridge/@1.2884525,103.8492671,17z/data=!3m1!4b1!4m6!3m5!1s0x31da190a12e845cb:0x53225213f4c2325e!8m2!3d1.2884525!4d103.8492671!16s%2Fg%2F11b6dnrqqp?entry=ttu&g_ep=EgoyMDI0MDkxMS4wIKXMDSoASAFQAw%3D%3D",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/0qg50tbt?tk=V9NeBS"
+},
+{
+    "name": "Epoch Summit",
+    "date": "2024-09-17",
+    "time": "07:00 AM - 06:00 PM",
+    "topic": "",
+    "location": "Andaz Singapore",
+    "mapLink": "https://www.google.com/maps/place/Andaz+Singapore+-+A+Concept+by+Hyatt/@1.2992646,103.8581702,17z/data=!3m1!5s0x31da1769b163bd07:0x514706a6e4f23eef!4m9!3m8!1s0x31da19b021e9ce07:0x6f6afbcfba9af1c1!5m2!4m1!1i2!8m2!3d1.2992646!4d103.8581702!16s%2Fg%2F11dxdb4pb0?hl=en&entry=ttu&g_ep=EgoyMDI0MDkxMS4wIKXMDSoASAFQAw%3D%3D",
+    "ticketLink": "",
+    "eventLink": "https://www.epochsummit.com/event/epoch-singapore"
+},
+            {
+    "name": "FHE Con",
+    "date": "2024-09-17",
+    "time": "09:30 AM - 05:00 PM",
+    "topic": "AI",
+    "location": "Raffles Hotel",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Raffles%20Hotel&query_place_id=ChIJre7RzqUZ2jERiSpTzfJgJGE",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/el0stwr7?tk=Hj2RLe"
+},
+{
+    "name": "Timestamp 2024 [ABCDE & Solv]",
+    "date": "2024-09-17",
+    "time": "09:00 AM - 05:00 PM",
+    "topic": "",
+    "location": "Fairmont",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Fairmont%20Singapore&query_place_id=ChIJ-Uph06UZ2jERjKQsyQgfltg",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/hmm39qud?tk=FclFMq"
+},
+{
+    "name": "Bounceclub arcade",
+    "date": "2024-09-17",
+    "time": "10:00 AM - 08:00 PM",
+    "topic": "Game",
+    "location": "Happy Loft",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=The%20Happi%20Loft&query_place_id=ChIJcXj9FoEZ2jERJqv6y2G2JDU",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/wf4wttn4?tk=kNfyep"
+},
+{
+    "name": "AppChain Day Singapore",
+    "date": "2024-09-17",
+    "time": "09:00 AM - 05:00 PM",
+    "topic": "",
+    "location": "Chijmes Hall",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=CHIJMES%20Hall&query_place_id=ChIJp7kJc14Z2jERbMe3Fm1FX0Q",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/mv8d60da?tk=vjC4CP"
+},
+{
+    "name": "Multichain Day",
+    "date": "2024-09-17",
+    "time": "03:00 PM - 06:30 PM",
+    "topic": "Cross-chain",
+    "location": "Westin Singapore",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=The%20Westin%20Singapore&query_place_id=ChIJWbwoihEZ2jER8DDLCxrd38o",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/multichaindaytoken2049?tk=IBGsdV"
+},
+{
+    "name": "AiFi Summit",
+    "date": "2024-09-17",
+    "time": "1:00 PM - 06:30 PM",
+    "topic": "AI",
+    "location": "Grand Hyatt",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Grand%20Hyatt%20Singapore&query_place_id=ChIJq0Qrde0Z2jERcHFh2aaynck",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/hp2qx40n?tk=9fwVDs"
+},
+{
+    "name": "Borderless Summit (TOKEN2049 SG): The Era of Consumer-First Web3",
+    "date": "2024-09-17",
+    "time": "01:00 PM - 07:30 PM",
+    "topic": "",
+    "location": "Sofitel Singapore",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Sofitel%20Singapore%20City%20Centre&query_place_id=ChIJASzhLBMZ2jERe6NqaRmc-dI",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/borderlesssummit2?tk=BJRFhf"
+},
+{
+    "name": "1783DAO Singapore??Midfield Battle of Crypto?Token2049 Side Event?",
+    "date": "2024-09-17",
+    "time": "01:30 PM - 05:30 PM",
+    "topic": "",
+    "location": "O2Work: Quallyer Quay Center",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=O2Work%20-%20Collyer%20Quay%20Center&query_place_id=ChIJT4m9pxwZ2jERyT6evSUcuhg",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/etfe56zs?tk=Iybsin"
+},
+{
+    "name": "DePin Mass Adoption",
+    "date": "2024-09-17",
+    "time": "01:30 PM - 06:00 PM",
+    "topic": "DePin",
+    "location": "Singapore Expo Hall 3",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Singapore%20EXPO%20Hall%203&query_place_id=ChIJg-l1agA92jER5tbLokWsyIU",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/0vcwqb7w?tk=210Ux6"
+},
+{
+    "name": "DePin Stack Lunch and Drink",
+    "date": "2024-09-17",
+    "time": "01:30 PM - 07:30 PM",
+    "topic": "DePin",
+    "location": "Altara Ventures",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=2%20Fusionopolis%20Way%2C%20%2315-01%2F02%20Innovis%20Tower%2C%20Singapore%20138634",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/7222d6jz?tk=nsBc17"
+},
+{
+    "name": "R3al World Summit 2024 - DePIN's Annual Event",
+    "date": "2024-09-17",
+    "time": "12:00 PM - 10:00 PM",
+    "topic": "DePin",
+    "location": "Amara Singapore",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Amara%20Singapore&query_place_id=ChIJrXZUXmsZ2jERdZPWv7o3QHA",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/r3al-world-depin-summit-token2049?tk=seayNG"
+},
+{
+    "name": "The Scaling AI Summit w/ 0x499 & NEAR",
+    "date": "2024-09-17",
+    "time": "10:00 AM- 07:00 PM",
+    "topic": "AI",
+    "location": "Nanyang NTU",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Nanyang%20Technological%20University%20%28one-north%29&query_place_id=ChIJI5kUf0Ma2jER8bnOzqgaa5k",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/TheScaling2024SG?tk=tXfQkC"
+},
+{
+    "name": "The Future of Web3 Gaming",
+    "date": "2024-09-17",
+    "time": "11:00 AM- 07:00 PM",
+    "topic": "Gaming",
+    "location": "Mandala Club",
+    "mapLink": "https://www.google.com/maps/place/Mandala+Club/@1.279295,103.840375,17z/data=!3m1!4b1!4m6!3m5!1s0x31da192b4181e901:0xd50f58b82e7e593a!8m2!3d1.279295!4d103.840375!16s%2Fg%2F11sfdc2gl5?entry=ttu&g_ep=EgoyMDI0MDkxMS4wIKXMDSoASAFQAw%3D%3D",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/AethirDNAGamingDay?tk=zfUgOQ"
+},
+{
+    "name": "Web3 with Tobi & Brent",
+    "date": "2024-09-17",
+    "time": "09:00 PM- 02:00 AM",
+    "topic": "",
+    "location": "Marquee Singapore",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=MARQUEE%20Singapore&query_place_id=ChIJs7z7vNsZ2jERh9cyPNNLFiQ",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/web3tobiandbrenttoken2049SG?tk=AeXqFT"
+},
+{
+    "name": "DePIN Founders Day | 20+ Top Projects",
+    "date": "2024-09-17",
+    "time": "12:00 PM- 06:00 PM",
+    "topic": "Depin",
+    "location": "Concorde Hotel",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Concorde%20Hotel%20Singapore&query_place_id=ChIJRe0Wq5cZ2jER5qoN9Q0znq8",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/qx7l81vd?tk=SxACgZ"
+},
+{
+    "name": "Modular & L2 Day | x Nubit x TAC | TOKEN2049",
+    "date": "2024-09-17",
+    "time": "11:30 AM- 06:30 PM",
+    "topic": "L2, Chain Abstraction",
+    "location": "Guaco Midtown",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Guoco%20Midtown%20Network%20Hub&query_place_id=ChIJX85YqBIZ2jERwOaQ6kkf-jg",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/l2daysingapore?tk=zFtc03"
+},
+{
+    "name": "Liquid Asset Summit: Redefining Staking & Liquidity",
+    "date": "2024-09-17",
+    "time": "10:30 AM- 06:00 PM",
+    "topic": "Defi",
+    "location": "Ritz Carlton",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=The%20Ritz-Carlton%2C%20Millenia%20Singapore&query_place_id=ChIJOek7q6kZ2jERX8_FX0BTcq4",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/fqjk0w8w?tk=5BFJfk"
+},
+{
+    "name": "Orderly Network x Google Cloud - Bounty Bash",
+    "date": "2024-09-17",
+    "time": "07:00 PM- 11:00 PM",
+    "topic": "",
+    "location": "Mr Stork",
+    "mapLink": "https://www.google.com/maps/place/Mr.+Stork/@1.2990991,103.8578838,17z/data=!3m1!4b1!4m6!3m5!1s0x31da19b014ea07a1:0xc93d56b44481948e!8m2!3d1.2990991!4d103.8578838!16s%2Fg%2F11hd57gzhk?entry=ttu&g_ep=EgoyMDI0MDkxMS4wIKXMDSoASAFQAw%3D%3D",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/8vgk11yf?tk=0CaAD0"
+},
+{
+    "name": "Open House #AI",
+    "date": "2024-09-17",
+    "time": "01:00 PM- 07:30 PM",
+    "topic": "AI",
+    "location": "Google Singapore",
+    "mapLink": "https://www.google.com/maps/place/Google+Singapore/@1.2761807,103.8000401,17z/data=!3m1!4b1!4m6!3m5!1s0x31da1911f12998e9:0x43e454b88753032a!8m2!3d1.2761807!4d103.8000401!16s%2Fg%2F11c1lzwprp?entry=ttu&g_ep=EgoyMDI0MDkxMS4wIKXMDSoASAFQAw%3D%3D",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/74r964ii?tk=1lymGV"
+},
+{
+    "name": "Wallet Connect",
+    "date": "2024-09-17",
+    "time": "03:00 PM- 07:00 PM",
+    "topic": "",
+    "location": "High House",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=HighHouse&query_place_id=ChIJi6BFl-oZ2jERVQP5UqiCifU",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/1d9vz532?tk=P4HtKy"
+},
+{
+    "name": "Infra x AI Day",
+    "date": "2024-09-17",
+    "time": "05:00 PM- 10:00 PM",
+    "topic": "AI",
+    "location": "OGBC Innovation Hub",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=OGBC%20Innovation%20Hub&query_place_id=ChIJ9ZbTS5kZ2jERAxC47TBieeY",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/wm8c9upl?tk=RtMmg1"
+},
+{
+    "name": "Web3 Transition Summit",
+    "date": "2024-09-17",
+    "time": "10:30 AM- 09:00 PM",
+    "topic": "",
+    "location": "Taxi stand @gallery national singapore",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Taxi%20Stand%20%40%20National%20Gallery%20Singapore&query_place_id=ChIJhSkeIqcZ2jERs2MsB0e7P5g",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/9ul3wenp?tk=EDiRK9"
+},
+{
+    "name": "Programmable IP Social",
+    "date": "2024-09-17",
+    "time": "06:00 PM- 09:00 PM",
+    "topic": "",
+    "location": "Vanguard Building",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Vanguard%20Building%2C%2071%20Stamford%20Rd%2C%20Singapore%20178895",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/tokenizeyourbrain?tk=2zjavK"
+},
+{
+    "name": "Polkadot opening party",
+    "date": "2024-09-17",
+    "time": "10:00 PM- 03:00 AM",
+    "topic": "Polkadot",
+    "location": "Zouk Singapore",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Zouk%20Singapore&query_place_id=ChIJyXeyF50Z2jERLCUAdtLbZ4M",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/IN-IT-FOR-TECHNO?tk=RgcVjA"
+},
+{
+    "name": "Airdrop Farmer Meetup",
+    "date": "2024-09-17",
+    "time": "03:00 PM - 06:00 PM",
+    "topic": "Airdrop",
+    "location": "Mapletree Anson",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Mapletree%20Anson&query_place_id=ChIJde-lqRQZ2jERQqqcktS7v5I",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/7k5dw7q2?tk=GFKh5f"
+},
+{
+    "name": "Supercharge your crypto: DeFi yield strategies for newbs, farmers, whales and degens (session 1)",
+    "date": "2024-09-18",
+    "time": "3:00 PM - 5:00 PM",
+    "topic": "DeFi",
+    "location": "Marina Bay Sands",
+    "mapLink": "https://www.google.com/maps/place/Marina+Bay+Sands+Singapore/@1.2837575,103.8591065,17z/data=!3m1!4b1!4m9!3m8!1s0x31da19ee4cc09203:0x26c9afefa555dd7!5m2!4m1!1i2!8m2!3d1.2837575!4d103.8591065!16zL20vMGRkOTAz?entry=ttu&g_ep=EgoyMDI0MDkxMS4wIKXMDSoASAFQAw%3D%3D",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/yo90w0sk?tk=70BK0z"
+},
+{
+    "name": "Bounceclub arcade",
+    "date": "2024-09-18",
+    "time": "10:00 AM - 8:00 PM",
+    "topic": "",
+    "location": "Secret Life of Trees",
+    "mapLink": "https://www.google.com/maps/place/Secret+Life+of+Trees,+Singapore/@1.2826497,103.8649161,17z/data=!3m1!4b1!4m6!3m5!1s0x31da1903b28b9a2f:0x7074076b4bc54438!8m2!3d1.2826488!4d103.8648791!16s%2Fg%2F11bvtgq0jt?entry=ttu&g_ep=EgoyMDI0MDkxMS4wIKXMDSoASAFQAw%3D%3D",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/41ksvlwr?tk=OcKwOj"
+},
+{
+    "name": "TOKEN2049 Hash Hour with Halborn, Autonomys, Beefy, Immunefi, nReach, Core, Apebond & Pangea @ Gardens by the Bay",
+    "date": "2024-09-18",
+    "time": "07:00 PM - 10:00 PM",
+    "topic": "",
+    "location": "Happy Loft",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=The%20Happi%20Loft&query_place_id=ChIJcXj9FoEZ2jERJqv6y2G2JDU",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/wf4wttn4?tk=kNfyep"
+},
+{
+    "name": "Restaking Conclave",
+    "date": "2024-09-18",
+    "time": "10:00 AM - 5:00 PM",
+    "topic": "",
+    "location": "Sospiri",
+    "mapLink": "https://www.google.com/maps/place/Sospiri/@1.2798905,103.8466253,17z/data=!3m1!4b1!4m6!3m5!1s0x31da193437fafe2b:0xf1de6a98a4236529!8m2!3d1.2798851!4d103.8514962!16s%2Fg%2F11vxz6m47w?entry=ttu&g_ep=EgoyMDI0MDkxMS4wIKXMDSoASAFQAw%3D%3D",
+    "ticketLink": "",
+    "eventLink": ""
+},
+{
+    "name": "TOKEN2049 Breakfast w/ Halborn, Utila, Alterya, Beefy, Somnia, Sushi, Dojima, Circuit, SphereX & Nillion",
+    "date": "2024-09-19",
+    "time": "09:00 AM - 11:00 AM",
+    "topic": "",
+    "location": "Grain Traders",
+    "mapLink": "https://www.google.com/maps/place/Grain+Traders/@1.2818145,103.8500991,17z/data=!3m1!4b1!4m6!3m5!1s0x31da190c2b3223e7:0xea9f49ddef3f5319!8m2!3d1.2818145!4d103.8500991!16s%2Fg%2F11b8_mj88w?entry=ttu&g_ep=EgoyMDI0MDkxMS4wIKXMDSoASAFQAw%3D%3D",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/ycpxum7l?tk=GFztW3"
+},
+
+{
+    "name": "BTC Eco Summit",
+    "date": "2024-09-18",
+    "time": "08:00 AM - 09:00 PM",
+    "topic": "BTC",
+    "location": "Token2049 Venue",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=%E6%BB%A8%E6%B5%B7%E6%B9%BE%E9%87%91%E6%B2%99%E9%85%92%E5%BA%97&query_place_id=ChIJA5LATO4Z2jER111V-v6abAI",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/frcni6ux?tk=qEB8wL"
+},
+{
+    "name": "Craftt IRL Pop-Up [Free Bites & Sips]",
+    "date": "2024-09-18",
+    "time": "11:00 AM - 6:00 PM",
+    "topic": "",
+    "location": "Cafe Marina Bay",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=PS.Cafe%20Marina%20Bay%20Sands&query_place_id=ChIJkQ3gWyEZ2jERz2KwfC2rA3w",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/j8141jpn?tk=vuoVkz"
+},
+{
+    "name": "IOSG OFR13th Singularity 2.0 [AI x Web3]",
+    "date": "2024-09-18",
+    "time": "2:00 PM - 6:00 PM",
+    "topic": "AI",
+    "location": "Park Royal Collection",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=PARKROYAL%20COLLECTION%20Pickering&query_place_id=ChIJo8cvPgsZ2jERzUp0v52SdI0",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/gfgh4zgj?tk=IdBe9O"
+},
+{
+    "name": "ZKcandy GameFi and MemeFi Happy Hour",
+    "date": "2024-09-18",
+    "time": "04:00 PM - 07:00 PM",
+    "topic": "",
+    "location": "XM Studio",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=XM%20Studios&query_place_id=ChIJDTmr_FcZ2jER3TnlaAINXzQ",
+    "ticketLink": "",
+    "eventLink": ""
+},
+{
+    "name": "Algorand Royale",
+    "date": "2024-09-18",
+    "time": "04:00 PM - 09:00 PM",
+    "topic": "Algorand",
+    "location": "Altro Zafferano",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Altro%20Zafferano&query_place_id=ChIJ8Ts47w4Z2jER3wgHYemC4hw",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/06fab1tz?tk=D72GmC"
+},
+{
+    "name": "Night of Crypto Wonders: A TOKEN2049 Side Event",
+    "date": "2024-09-18",
+    "time": "07:00 PM - 11:00 PM",
+    "topic": "",
+    "location": "MBFC Tower",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=MBFC%20Tower%203&query_place_id=ChIJj1FKMw4Z2jERUDz1GxgD08o",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/17vdbxhu?tk=zSjVu1"
+},
+{
+    "name": "Arbiverse",
+    "date": "2024-09-18",
+    "time": "10:00 AM - 05:00 PM",
+    "topic": "Arbitrum",
+    "location": "Artscience museum",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=ArtScience%20Museum&query_place_id=ChIJnWdQKQQZ2jERScXuKeFHyIE",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/rec1t85r?tk=FAwZHB"
+},
+{
+    "name": "IQ50 Singapore : MAGA@Token 2049",
+    "date": "2024-09-18",
+    "time": "05:00 PM - 09:00 PM",
+    "topic": "Defi",
+    "location": "CALI, Ascott Raffles",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=CALI%2C%20Ascott%20Raffles%20Place%20Singapore&query_place_id=ChIJk3WecOMZ2jERz12XJdcf3uQ",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/v9j0lnec?tk=T96i57"
+},
+{
+    "name": "Token2049 Inner Circle Party - by XBTO, Blockchain Founders Fund, GORA, KAIKA and CoinTelegraph",
+    "date": "2024-09-18",
+    "time": "06:30 PM - 11:00 PM",
+    "topic": "",
+    "location": "33 Club, Private Members Club",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=33Club%20-%20Private%20Members%20Club%20Singapore&query_place_id=ChIJe65CcywZ2jERUfZ1aZf3Rws",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/Token20249_InnerCircle?tk=SddWTc"
+},
+{
+    "name": "Tezos Realm | #TOKEN2049",
+    "date": "2024-09-18",
+    "time": "06:30 PM - 01:00 AM",
+    "topic": "Tezos",
+    "location": "Chjmes Hall",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=CHIJMES%20Hall&query_place_id=ChIJp7kJc14Z2jERbMe3Fm1FX0Q",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/1jhx4405?tk=WjAhFr"
+},
+{
+    "name": "Memecoin Mashup Party",
+    "date": "2024-09-18",
+    "time": "08:00 PM - 11:00 PM",
+    "topic": "Meme",
+    "location": "Level Up Arcade Bar",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Level%20Up%20-%20Arcade%20%26%20Live%20Music%20Bar&query_place_id=ChIJmQ9nIKAZ2jERNjKLlBcUxKU",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/memecoin-launch?tk=2PN3ZP"
+},
+{
+    "name": "HTX DAO x TRON TOKEN 2049 AFTERPARTY",
+    "date": "2024-09-18",
+    "time": "07:00 PM - 11:00 PM",
+    "topic": "",
+    "location": "Have Fun Live Show Bugis",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=HaveFun%20Live%20Show%20%28Bugis%2B%29&query_place_id=ChIJ7d3QAzkZ2jERv6uPUZaqryo",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/wt8hul7a?tk=PFAAEx"
+},
+{
+    "name": "Decentralized AI Day",
+    "date": "2024-09-18",
+    "time": "11:00 AM - 07:00 PM",
+    "topic": "AI",
+    "location": "Mandala Club",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Mandala%20Club&query_place_id=ChIJAemBQSsZ2jEROll-LrhYD9U",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/DecentralizedAIDay?tk=E0qbxX"
+},
+{
+    "name": "Bitcoin Buidlers and VCs Meetup",
+    "date": "2024-09-18",
+    "time": "06:00 PM - 09:00 PM",
+    "topic": "BTC",
+    "location": "Boulevard ASQ",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Boulevard%20ASQ&query_place_id=ChIJk0L-DsMZ2jERS6MJxDxfS1Y",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/6yivxhlf?tk=jEog3Z"
+},
+{
+    "name": "Cambridge University AI Research for Web3",
+    "date": "2024-09-18",
+    "time": "10:00 AM - 02:00 PM",
+    "topic": "AI",
+    "location": "OGBC Innovation Hub",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=OGBC%20Innovation%20Hub&query_place_id=ChIJ9ZbTS5kZ2jERAxC47TBieeY",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/avv2qd5a?tk=cYA53G"
+},
+{
+    "name": "AI Ecosystem Roundup",
+    "date": "2024-09-18",
+    "time": "02:00 PM - 05:00 PM",
+    "topic": "AI",
+    "location": "Bugis Junction Tower",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Bugis%20Junction%20Towers&query_place_id=ChIJXxrem7oZ2jERQG4kK_YXy7M",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/q017ei6n?tk=JwkN5S"
+},
+{
+    "name": "Depin Lounge",
+    "date": "2024-09-18",
+    "time": "05:00 PM - 10:00 PM",
+    "topic": "Depin",
+    "location": "Hopscotch",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Hopscotch%20%28Gardens%20by%20the%20Bay%29&query_place_id=ChIJQ6cPiSMZ2jERYP9lJruuJFA",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/sp0ypi2f?tk=50wzpq"
+},
+{
+    "name": "To The Moon Networking Event: Bringing Together Asia’s Most Prominent Projects",
+    "date": "2024-09-18",
+    "time": "07:00 PM - 10:00 PM",
+    "topic": "",
+    "location": "8 Raffles Avenue",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=8%20Raffles%20Ave.%2C%20%2301-13%20Annexe%2C%20Esplanade%20Mall%2C%20Singapore%20039802",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/rxjehyqw?tk=M22HKt"
+},
+{
+    "name": "ZK Morning Coffee",
+    "date": "2024-09-18",
+    "time": "08:00 AM - 09:30 AM",
+    "topic": "",
+    "location": "Baccha Coffee",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Bacha%20Coffee%20Fashion%20Avenue%20at%20The%20Shoppes%20at%20Marina%20Bay%20Sands&query_place_id=ChIJc0xvFxsZ2jER9YScxObbgw4",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/5qxylhcq?tk=cDG6E1"
+},
+{
+    "name": "Move with SUI",
+    "date": "2024-09-18",
+    "time": "09:00 PM - 01:00 AM",
+    "topic": "SUI",
+    "location": "Marquee Singapore",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=MARQUEE%20Singapore&query_place_id=ChIJs7z7vNsZ2jERh9cyPNNLFiQ",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/move-with-sui-at-marquee"
+},
+{
+    "name": "BTC Eco Summit",
+    "date": "2024-09-19",
+    "time": "08:00 AM - 09:00 PM",
+    "topic": "BTC",
+    "location": "Token2049 Venue",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=%E6%BB%A8%E6%B5%B7%E6%B9%BE%E9%87%91%E6%B2%99%E9%85%92%E5%BA%97&query_place_id=ChIJA5LATO4Z2jER111V-v6abAI",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/frcni6ux?tk=qEB8wL"
+},
+{
+    "name": "Craftt IRL Pop-Up [Free Bites & Sips]",
+    "date": "2024-09-19",
+    "time": "11:00 AM - 06:00 PM",
+    "topic": "",
+    "location": "Cafe Marina Bay",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=PS.Cafe%20Marina%20Bay%20Sands&query_place_id=ChIJkQ3gWyEZ2jERz2KwfC2rA3w",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/j8141jpn?tk=vuoVkz"
+},
+{
+    "name": "Stark Singapore",
+    "date": "2024-09-19",
+    "time": "01:00 PM - 04:00 PM",
+    "topic": "",
+    "location": "OGBC Innovation Hub",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=OGBC%20Innovation%20Hub&query_place_id=ChIJ9ZbTS5kZ2jERAxC47TBieeY",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/m6cq7234?tk=pNVE0L"
+},
+{
+    "name": "Shaping the Future of Web3.0",
+    "date": "2024-09-19",
+    "time": "09:30 AM - 05:00 PM",
+    "topic": "",
+    "location": "Fairmont Singapore",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Fairmont%20Singapore&query_place_id=ChIJ-Uph06UZ2jERjKQsyQgfltg",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/7y0xjr9z?tk=iIhZhQ"
+},
+{
+    "name": "Orb Café Singapore: Worldcoin x Nethermind",
+    "date": "2024-09-19",
+    "time": "10:30 AM - 06:00 PM",
+    "topic": "Worldcoin",
+    "location": "Cafe Marina Bay",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=PS.Cafe%20Marina%20Bay%20Sands&query_place_id=ChIJkQ3gWyEZ2jERz2KwfC2rA3w",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/shg54aft?tk=2BJUfG"
+},
+{
+    "name": "Cardano Defi",
+    "date": "2024-09-19",
+    "time": "11:30 AM - 02:30 PM",
+    "topic": "Cardano",
+    "location": "Vatos Urban Tacos",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Vatos%20Urban%20Tacos%20-%20City%20House&query_place_id=ChIJX5Dz3e4Z2jERh7FHbjmbKJY",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/mox1wawx?tk=GfFSWR"
+},
+{
+    "name": "AI & Web3 Demo Day",
+    "date": "2024-09-19",
+    "time": "01:00 PM - 06:00 PM",
+    "topic": "AI",
+    "location": "Cairnhill",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=24%20Cairnhill%20Rd&query_place_id=ChIJA52y4ZMZ2jERbO375P-1Te0",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/fieu5iy8?tk=eJfFmS"
+},
+{
+    "name": "Christian Regen Gathering",
+    "date": "2024-09-19",
+    "time": "01:00 PM - 03:00 PM",
+    "topic": "",
+    "location": "173 Geylang",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=173%20Geylang%20Rd&query_place_id=ChIJZWvuvDYY2jERu1jGxGN0nFo",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/wzd16hja?tk=sbMYMd"
+},
+{
+    "name": "Throw paper planes for #FREEDUROV at TOKEN2049",
+    "date": "2024-09-19",
+    "time": "01:30 PM - 02:00 PM",
+    "topic": "",
+    "location": "Marina Bay Sands",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Marina%20Bay%20Sands%20Singapore&query_place_id=ChIJA5LATO4Z2jER111V-v6abAI",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/3p5dqu06?tk=9L6ZPf"
+},
+{
+    "name": "DePIN Impact @ Solana Breakpoint & Token2049",
+    "date": "2024-09-19",
+    "time": "02:00 PM - 11:00 PM",
+    "topic": "Depin, Solana",
+    "location": "Jyspsy One Fullerton",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Jypsy%20One%20Fullerton&query_place_id=ChIJj-nwx20Z2jERxUcgrnwIQcc",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/depinimpact?tk=OhAdAp"
+},
+{
+    "name": "Meet your Meme TOKEN2049 afterparty",
+    "date": "2024-09-19",
+    "time": "06:30 PM - 10:30 PM",
+    "topic": "",
+    "location": "Avenue Lounge",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Avenue%20Lounge&query_place_id=ChIJzeE0HK0Z2jERe4FS4lO4Phg",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/4nt16eql?tk=zSRqV3"
+},
+{
+    "name": "EDU.Singapore: Campus Yacht Party ??? [Docked]",
+    "date": "2024-09-19",
+    "time": "07:00 PM - 10:00 PM",
+    "topic": "",
+    "location": "Keppel Bay Vista",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Keppel%20Bay%20Vista&query_place_id=EhtLZXBwZWwgQmF5IFZpc3RhLCBTaW5nYXBvcmUiLiosChQKEgl1FeL55BvaMRFWmrDSCcHM-RIUChIJdZOLiiMR2jERxPWrUs9peIg",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/z9i07g9g?tk=QnJ4Co"
+},
+{
+    "name": "The Open Art: TONX, TON Society, and Blum at Token2049",
+    "date": "2024-09-19",
+    "time": "07:00 PM - 11:00 PM",
+    "topic": "TON, Blum",
+    "location": "National Gallery Singapore",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=National%20Gallery%20Singapore&query_place_id=ChIJFQzeR6cZ2jERgM6--iWeY-U",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/oqxjbl0q?tk=N8qkFw"
+},
+{
+    "name": "Arweave Asia 2024",
+    "date": "2024-09-19",
+    "time": "01:30 PM - 07:00 PM",
+    "topic": "Arweave",
+    "location": "Cargo 39",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Cargo39&query_place_id=ChIJ3bFcA_0Z2jERX95OJOXXA2s",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/arweaveasia2024?tk=HaN2Tv"
+},
+{
+    "name": "Hack Seasons Conference Singapore",
+    "date": "2024-09-19",
+    "time": "10:00 AM - 07:00 PM",
+    "topic": "",
+    "location": "National Gallery Singapore",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=National%20Gallery%20Singapore&query_place_id=ChIJFQzeR6cZ2jERgM6--iWeY-U",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/hack_singapore?tk=fdGsD4"
+},
+{
+    "name": "Asia OnChain - RWA, DePIN & DAO + (Party/Networking)",
+    "date": "2024-09-19",
+    "time": "07:00 PM - 11:00 PM",
+    "topic": "RWA, Depin",
+    "location": "",
+    "mapLink": "",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/aw0flgk4?tk=AHbUrY"
+},
+{
+    "name": "AI After Hours: Token2049 Singapore",
+    "date": "2024-09-19",
+    "time": "05:00 PM - 08:00 PM",
+    "topic": "AI",
+    "location": "New Bahru",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=New%20Bahru&query_place_id=ChIJlwOQpJ4Z2jER5EGYnv1VcvE",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/r02yxz4u?tk=BKhIF9"
+},
+{
+    "name": "Bitcoin Singapore: Lightning Returns",
+    "date": "2024-09-19",
+    "time": "12:00 PM - 07:00 PM",
+    "topic": "BTC",
+    "location": "National Gallery Singapore",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=National%20Gallery%20Singapore&query_place_id=ChIJFQzeR6cZ2jERgM6--iWeY-U",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/ndem2rj8?tk=dJ6j1P"
+},
+{
+    "name": "Privacy 4 Web3 and AI - with Oasis and Ocean",
+    "date": "2024-09-19",
+    "time": "03:00 PM - 08:00 PM",
+    "topic": "AI",
+    "location": "Social Bar and Bistro",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Social%20Bar%20%26%20Bistro&query_place_id=ChIJGfAXofQZ2jERjSf3xYO0i20",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/a851uvvh?tk=rlC9r1"
+},
+{
+    "name": "Web 3 Fiesta Singapore 2024 - GameFi, RWA, SocialFi",
+    "date": "2024-09-19",
+    "time": "06:30 PM - 11:30 PM",
+    "topic": "RWA, GameFi, SocialFi",
+    "location": "Fraser Place",
+    "mapLink": "https://www.google.com/maps/place/Fraser+Place+Robertson+Walk/@1.2922579,103.8414917,17z/data=!3m1!4b1!4m9!3m8!1s0x31da199ee2f6c3df:0x3da709bb224df81c!5m2!4m1!1i2!8m2!3d1.2922579!4d103.8414917!16s%2Fg%2F1w0j1qkx?entry=ttu&g_ep=EgoyMDI0MDkxMS4wIKXMDSoASAFQAw%3D%3D",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/9mvich3k?tk=8wBdl1"
+},
+{
+    "name": "Garden Run",
+    "date": "2024-09-19",
+    "time": "07:00 AM - 08:30 AM",
+    "topic": "",
+    "location": "Gardens by the bay",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Gardens%20by%20the%20Bay&query_place_id=ChIJMxZ-kwQZ2jERdsqftXeWCWI",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/owml96s7?tk=C8uUEP"
+},
+{
+    "name": "Backpack | Pyth | Eclipse - ICE ICE BABY",
+    "date": "2024-09-19",
+    "time": "09:30 AM - 05:00 PM",
+    "topic": "",
+    "location": "Metacamp",
+    "mapLink": "https://www.google.com/maps/place/Metacamp/@1.2806944,103.8460827,17z/data=!3m1!4b1!4m6!3m5!1s0x29b119d48cbcb0cf:0x33f7e8c7a059bc89!8m2!3d1.2806944!4d103.8460827!16s%2Fg%2F11td360_fv?entry=ttu&g_ep=EgoyMDI0MDkxMS4wIKXMDSoASAFQAw%3D%3D",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/tyz6y5lo?tk=pujHEd"
+},
+{
+    "name": "Envio Run and Chat",
+    "date": "2024-09-19",
+    "time": "09:00 AM - 10:00 AM",
+    "topic": "",
+    "location": "Merlion",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Merlion&query_place_id=ChIJ29omWQgZ2jEROEz2yZFzQp8",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/5v9wgs1n?tk=6aYTj7"
+},
+{
+    "name": "Ivan on Tech",
+    "date": "2024-09-19",
+    "time": "05:00 PM - 08:00 PM",
+    "topic": "",
+    "location": "Prive ACM",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Priv%C3%A9%20ACM&query_place_id=ChIJ1XsulwkZ2jERC0g7o7Wn4iU",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/8a7ulz91?tk=DhGEBg"
+},
+{
+    "name": "Starknet Summit",
+    "date": "2024-09-19",
+    "time": "01:30 PM - 06:00 PM",
+    "topic": "",
+    "location": "Marina Bay Singapore",
+    "mapLink": "",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/4b6brduj?tk=FeOo4o"
+},
+{
+    "name": "GAAAT Networking Drinks (TOKEN2049 Exclusive)",
+    "date": "2024-09-19",
+    "time": "05:00 PM - 08:00 PM",
+    "topic": "",
+    "location": "Collab67",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Collab67&query_place_id=ChIJj8hRwXAZ2jERJlCNX5Ou_N0",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/g2ya2xjh?tk=1DM4Vb"
+},
+{
+    "name": "Real World Assets, Old World Breakfast @ TOKEN2049",
+    "date": "2024-09-19",
+    "time": "08:30 AM - 10:30 AM",
+    "topic": "RWA",
+    "location": "Yugoslavia Bakery",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Yugoslavia%20Bakery%20%26%20Cafe%20%40%20Citylink%20Mall&query_place_id=ChIJgyGWO1AZ2jERMAs-3POJ0ac",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/z1ii8ryq?tk=BzB8B2"
+},
+{
+    "name": "ZK Morning Coffee",
+    "date": "2024-09-19",
+    "time": "08:00 AM - 09:30 AM",
+    "topic": "",
+    "location": "Baccha Coffee",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Bacha%20Coffee%20Fashion%20Avenue%20at%20The%20Shoppes%20at%20Marina%20Bay%20Sands&query_place_id=ChIJc0xvFxsZ2jER9YScxObbgw4",
+    "ticketLink": "",
+    "eventLink": "https://lu.ma/5qxylhcq?tk=cDG6E1"
+},
+{
+    "name": "Hologram",
+    "date": "2024-09-19",
+    "time": "09:30 PM - 03:00 AM",
+    "topic": "",
+    "location": "Zouk Singapore",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Zouk%20Singapore&query_place_id=ChIJyXeyF50Z2jERLCUAdtLbZ4M",
+    "ticketLink": "",
+    "eventLink": ""
+}
+
+            // Add more events...
+        ];
+
+function timeToMinutes(timeString) {
+            const [time, period] = timeString.split(' ');
+            let [hours, minutes] = time.split(':').map(Number);
+            if (period === 'PM' && hours !== 12) hours += 12;
+            if (period === 'AM' && hours === 12) hours = 0;
+            return hours * 60 + minutes;
+        }
+
+        function renderEvents(filteredEvents) {
+            console.log('Rendering events:', filteredEvents);
+            const eventList = document.getElementById('eventList');
+            eventList.innerHTML = '';
+
+filteredEvents.sort((a, b) => {
+                const timeA = timeToMinutes(a.time.split('-')[0].trim());
+                const timeB = timeToMinutes(b.time.split('-')[0].trim());
+                return timeA - timeB;
+            });
+
+            filteredEvents.forEach(event => {
+                const eventCard = document.createElement('div');
+                eventCard.className = 'event-card';
+                eventCard.innerHTML = `
+                    <h2>${event.name}</h2>
+                    <p>Date: ${event.date}</p>
+                    <p>Time: ${event.time}</p>
+                    <p>Topic: ${event.topic}</p>
+                    <p>Location: ${event.location}</p>
+                    <p><a href="${event.mapLink}" target="_blank">View on Map</a></p>
+                    <p>My Ticket</a></p>
+                    <p><a href="${event.eventLink}" target="_blank">Event Details</a></p>
+                `;
+                eventList.appendChild(eventCard);
+            });
+        }
+
+        function filterEvents() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const dateFilter = document.getElementById('dateFilter').value;
+            const topicFilter = document.getElementById('topicFilter').value;
+
+            const filteredEvents = events.filter(event => {
+                const matchesSearch = Object.values(event).some(value => 
+                    value.toLowerCase().includes(searchTerm)
+                );
+                const matchesDate = dateFilter === '' || event.date === dateFilter;
+                const matchesTopic = topicFilter === '' || event.topic === topicFilter;
+
+                return matchesSearch && matchesDate && matchesTopic;
+            });
+
+            renderEvents(filteredEvents);
+        }
+
+        // Initial render
+        console.log('Initial events:', events);
+        renderEvents(events);
+
+        // Add event listeners
+        document.getElementById('searchInput').addEventListener('input', filterEvents);
+        document.getElementById('dateFilter').addEventListener('change', filterEvents);
+        document.getElementById('topicFilter').addEventListener('change', filterEvents);
+
+        // Populate topic filter options
+        const topicFilter = document.getElementById('topicFilter');
+        const uniqueTopics = [...new Set(events.map(event => event.topic))];
+        uniqueTopics.forEach(topic => {
+            const option = document.createElement('option');
+            option.value = topic;
+            option.textContent = topic;
+            topicFilter.appendChild(option);
+        });
+    </script>
+</body>
+</html>
